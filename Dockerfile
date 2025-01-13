@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Выполняем миграции Prisma
-RUN npx prisma migrate deploy
+RUN npx prisma migrate dev --name init
 
 # Указываем команду для запуска приложения
 CMD ["npm", "run", "start:prod"]
