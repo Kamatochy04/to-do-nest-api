@@ -46,10 +46,15 @@ services:
       - nest_test
     restart: unless-stopped
 
-networks:
-  nest_test:
-    driver: bridge
-
-volumes:
-  postgres:
-  pgadmin:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - nest_app
+    networks:
+      - nest_test
+    restart: unless
